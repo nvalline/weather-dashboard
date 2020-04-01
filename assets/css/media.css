@@ -1,0 +1,51 @@
+/* Max Screen Size 900px */
+@media only screen and (max-width: 900px) {
+    .container {
+        grid-template-areas: 
+            "head"
+            "prime"
+            "second"
+            "side"
+            "foot";
+        grid-template-rows: 8vh auto 1fr auto 8vh;
+        grid-template-columns: auto;
+        width: 100%;
+    }
+
+    /* HEAD - header CSS */
+    #headline {
+        font-size: 1.5em;
+    }
+
+    /* PRIME - current weather CSS */
+    #current-weather {
+        margin: 10px;
+        padding: 0;
+        text-align: center;
+    }
+
+    /* SECOND - forecast CSS */
+    #weather-forecast {
+        margin: 10px;
+        padding: 0;
+        text-align: center;
+    }
+
+    footer {
+        font-size: 1.2em;
+    }
+}
+
+/* Max Screen Size 500px */
+@media only screen and (max-width: 500px) {
+    .forecast-card {
+        width: 42%;
+    }
+}
+
+/*  Max Screen Size 420px */
+@media only screen and (max-width: 500px) {
+    .forecast-card {
+        width: 100%;
+    }
+}
