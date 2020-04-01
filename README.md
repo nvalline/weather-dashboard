@@ -1,4 +1,6 @@
-# Project Name
+### Project Name
+
+# Weather Dashboard
 
 ![Project Image](project-image-url)
 
