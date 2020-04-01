@@ -12,7 +12,7 @@ body {
         "side prime"
         "side second"
         "side foot";
-    grid-template-rows: 8vh 1fr 5vh;
+    grid-template-rows: 8vh 270px 1fr 5vh;
     grid-template-columns: 30% 1fr;
     margin: 0 auto;
     max-width: 1440px;
@@ -92,4 +92,60 @@ ul {
     color: #2b2b2b;
     margin: 10px 0 10px 10px;
     padding-left: 20px;
+}
+
+/* SECOND - Forecast CSS */
+#weather-forecast {
+    grid-area: second;
+    margin: 0 0 10px 10px;
+    padding-left: 20px;
+}
+
+#forecast-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.forecast-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #3e88f7;
+    border: 2px solid #4d4d4d;
+    border-radius: 5px;
+    color: #f3f3f3;
+    margin: 1%;
+    min-width: 125px;
+    padding: 10px;
+    width: 15%;
+}
+
+.forecast-card p {
+    font-size: 0.9em;
+}
+
+.forecast-card .future-date {
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+.forecast-card i {
+    font-size: 2em;
+}
+
+.forecast-card .future-temp {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.forecast-card .future-humidity {
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+/* FOOT - Footer CSS */
+footer {
+    grid-area: foot;
 }
