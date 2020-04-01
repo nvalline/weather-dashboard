@@ -71,7 +71,7 @@ form label {
 }
 
 /* Search Results CSS */
-ul {
+#search-history-ul {
     list-style: none;
     padding: 0 20px;
 }
@@ -82,6 +82,7 @@ ul {
     width: 90%;
     margin-bottom: 2px;
     padding: 9px 10px;
+    text-transform: capitalize;
 }
 
 /* PRIME - Current Weather CSS */
