@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 
@@ -16,39 +18,39 @@
             <!-- headline -->
             <h1 id="headline">Weather Dashboard</h1>
         </header>
+
+        <!-- sidebar - search area -->
+        <section class="sidebar">
+            <form>
+                <!-- search input -->
+                <label for="search-input">Search for a City:</label>
+                <input type="text" id="search-input">
+                <button type="submit" id="search-btn"><i class="fas fa-search-location"></i></button>
+            </form>
+            <div id="search-history"></div>
+        </section>
+
+        <!-- section - current weather -->
+        <section id="current-weather">
+            <!-- h2 - city/date/icon -->
+            <!-- p - temp. -->
+            <!-- p - humidity -->
+            <!-- p - wind speed -->
+            <!-- p - UV index - color coded -->
+        </section>
+
+        <!-- section - forecast -->
+        <section id="weather-forecast">
+            <h2>5-Day Forecast:</h2>
+            <!-- forecast cards -->
+            <div id="forecast-container"></div>
+        </section>
+
+        <!-- footer -->
+        <footer>
+            <h5 id="tagline">Get out and smell the roses!</h5>
+        </footer>
     </main>
-
-    <!-- sidebar - search area -->
-    <section class="sidebar">
-        <form>
-            <!-- search input -->
-            <label for="search-input">Search for a City:</label>
-            <input type="text" id="search-input">
-            <button type="submit" id="search-btn"><i class="fas fa-search-location"></i></button>
-        </form>
-        <div id="search-history"></div>
-    </section>
-
-    <!-- section - current weather -->
-    <section id="current-weather">
-        <!-- h2 - city/date/icon -->
-        <!-- p - temp. -->
-        <!-- p - humidity -->
-        <!-- p - wind speed -->
-        <!-- p - UV index - color coded -->
-    </section>
-
-    <!-- section - forecast -->
-    <section id="weather-forecast">
-        <h2>5-Day Forecast:</h2>
-        <!-- forecast cards -->
-        <div id="forecast-container"></div>
-    </section>
-
-    <!-- footer -->
-    <footer>
-        <h5 id="tagline"></h5>
-    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/fontawesome.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

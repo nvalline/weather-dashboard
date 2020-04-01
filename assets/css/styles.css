@@ -1,0 +1,33 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+.container {
+    display: grid;
+    grid-template-areas: 
+        "head head"
+        "side prime"
+        "side second"
+        "foot foot";
+    grid-template-rows: 8vh 1fr 5vh;
+    grid-template-columns: 30% 1fr;
+    margin: 0 auto;
+    max-width: 1440px;
+    width: 80%;
+}
+
+header {
+    grid-area: head;
+    background-color: #2b2b2b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#headline {
+    color: #f3f3f3;
+    letter-spacing: 0.1em;
+}
