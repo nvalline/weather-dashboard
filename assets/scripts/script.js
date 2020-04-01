@@ -1,11 +1,16 @@
 let searchLocations = [];
 
+const APIKey = '166a433c57516f51dfab1f7edaed8413';
+
+
 init();
 
 // Click event for search button
 $('#search-btn').on('click', function (event) {
     event.preventDefault();
+
     let searchLocationValue = $('#search-input').val().trim().toLowerCase();
+
     if (searchLocationValue === '') {
         return
     } else if (searchLocations != null && searchLocations.includes(searchLocationValue)) {
@@ -14,13 +19,21 @@ $('#search-btn').on('click', function (event) {
     } else {
         searchLocations.unshift(searchLocationValue)
     }
+
     printSearchLocations()
     storeLocations()
+
+    $('#search-input').val('')
 })
+
+// URL creation for database query
+let queryURL = 'api.openweathermap.org/data/2.5/weather?q=' + searchLocations[0] + '&appid=' + APIKey;
+
 
 // add searches to search history list
 function printSearchLocations() {
     resetLocationState()
+
     for (let i = 0; i < searchLocations.length; i++) {
         let location = searchLocations[i]
         let newLiElement = $('<li>').addClass('search-results')
