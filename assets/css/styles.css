@@ -11,7 +11,7 @@ body {
         "head head"
         "side prime"
         "side second"
-        "foot foot";
+        "side foot";
     grid-template-rows: 8vh 1fr 5vh;
     grid-template-columns: 30% 1fr;
     margin: 0 auto;
@@ -19,7 +19,7 @@ body {
     width: 80%;
 }
 
-/* header CSS */
+/* HEAD - header CSS */
 header {
     grid-area: head;
     background-color: #2b2b2b;
@@ -33,7 +33,7 @@ header {
     letter-spacing: 0.1em;
 }
 
-/* Sidebar CSS */
+/* SIDE - Sidebar CSS */
 .sidebar {
     grid-area: side;
     background-color: #f5f5f5;
@@ -50,11 +50,12 @@ form label {
     margin-bottom: 5px;
 }
 
+/* Input CSS */
 #search-input {
     /* border: none; */
     border-radius: 5px;
     height: 30px;
-    width: 60%;
+    width: 75%;
 }
 
 #search-btn {
@@ -67,4 +68,28 @@ form label {
 
 #search-btn:hover {
     background-color: #214ebf;
+}
+
+/* Search Results CSS */
+ul {
+    list-style: none;
+    padding: 0 20px;
+}
+
+.search-results {
+    background-color: #ffffff;
+    border-radius: 3px;
+    width: 90%;
+    margin-bottom: 2px;
+    padding: 9px 10px;
+}
+
+/* PRIME - Current Weather CSS */
+#current-weather {
+    grid-area: prime;
+    border: 2px solid #f5f5f5;
+    border-radius: 5px;
+    color: #2b2b2b;
+    margin: 10px 0 10px 10px;
+    padding-left: 20px;
 }

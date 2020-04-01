@@ -26,9 +26,17 @@
                 <!-- search input -->
                 <label for="search-input">Search for a City:</label>
                 <input type="text" id="search-input">
-                <button id="search-btn"><i class="fas fa-search"></i></button>
+                <button id="search-btn"><i class="fas fa-search-location"></i></button>
             </form>
-            <div id="search-history"></div>
+            <div id="search-history">
+                <ul>
+                    <li class="search-results">Austin</li>
+                    <li class="search-results">Chicago</li>
+                    <li class="search-results">New York</li>
+                    <li class="search-results">Orlando</li>
+                    <li class="search-results">Seattle</li>
+                </ul>
+            </div>
         </section>
 
         <!-- section - current weather -->
@@ -36,9 +44,13 @@
             <!-- h2 - city/date/icon -->
             <h2>Midway, UT (4/1/2020)</h2>
             <!-- p - temp. -->
+            <p>Temperature: <span>90.9</span> &#8457</p>
             <!-- p - humidity -->
+            <p>Humidity: <span>41</span>%</p>
             <!-- p - wind speed -->
+            <p>Wind Speed: <span>4.7</span> MPH</p>
             <!-- p - UV index - color coded -->
+            <p>UV Index: <span>9.49</span></p>
         </section>
 
         <!-- section - forecast -->
