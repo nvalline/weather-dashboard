@@ -19,6 +19,7 @@ body {
     width: 80%;
 }
 
+/* header CSS */
 header {
     grid-area: head;
     background-color: #2b2b2b;
@@ -30,4 +31,40 @@ header {
 #headline {
     color: #f3f3f3;
     letter-spacing: 0.1em;
+}
+
+/* Sidebar CSS */
+.sidebar {
+    grid-area: side;
+    background-color: #f5f5f5;
+}
+
+form {
+    padding-left: 20px;
+    padding-top: 15px;
+}
+
+form label {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+#search-input {
+    /* border: none; */
+    border-radius: 5px;
+    height: 30px;
+    width: 60%;
+}
+
+#search-btn {
+    border-radius: 4px;
+    background-color: #3069f9;
+    color: #f3f3f3;
+    font-size: 1em;
+    padding: 6px 10px;
+}
+
+#search-btn:hover {
+    background-color: #214ebf;
 }
