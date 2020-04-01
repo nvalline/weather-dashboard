@@ -13,12 +13,14 @@ $('#search-btn').on('click', function (event) {
 
     if (searchLocationValue === '') {
         return
-    } else if (searchLocations != null && searchLocations.includes(searchLocationValue)) {
-        // manipulate array for same value
-        console.log('includes value')
     } else {
         searchLocations.unshift(searchLocationValue)
     }
+
+    // else if (searchLocations != null && searchLocations.includes(searchLocationValue)) {
+    //     // manipulate array for same value
+    //     console.log('includes value')
+    // }
 
     printSearchLocations()
     storeLocations()
@@ -33,6 +35,7 @@ let queryURL = 'api.openweathermap.org/data/2.5/weather?q=' + searchLocations[0]
 // add searches to search history list
 function printSearchLocations() {
     resetLocationState()
+    removeArrayDuplicates(searchLocations)
 
     for (let i = 0; i < searchLocations.length; i++) {
         let location = searchLocations[i]
@@ -64,4 +67,13 @@ function init() {
 // save search locations to local storage
 function storeLocations() {
     localStorage.setItem('searchLocations', JSON.stringify(searchLocations))
+}
+
+// remove duplicate search locations from array
+function removeArrayDuplicates(arr) {
+    let cleanedArray = arr.filter(function (v, i, self) {
+        return i == self.indexOf(v);
+    });
+    searchLocations = cleanedArray;
+    return searchLocations;
 }
