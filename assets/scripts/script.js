@@ -39,13 +39,15 @@ function getCurrentWeather() {
 
         getUVIndex(lat, lon)
 
-        let currentDate = moment(response.weather.dt).format('MM/DD/YYYY');
+        let currentDate = moment(response.weather.dt).format('MMMM Do, YYYY');
         let weatherIcon = 'https://openweathermap.org/img/w/' + response.weather[0].icon + '.png';
 
-        $('#current-city').text(response.name)
+        $('#current-city').html(function () {
+            return '<h2>' + response.name + ' | <span>' + currentDate + '</span></h2>';
+        })
 
         console.log(currentDate)
-        $('#current-date').text(currentDate)
+        $('#current-city > span').text('currentDate')
 
         $('#weather-icon').attr('src', weatherIcon).attr('alt', 'Weather Icon')
 

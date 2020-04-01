@@ -24,6 +24,10 @@
         text-align: center;
     }
 
+    #current-weather div {
+        justify-content: center;
+    }
+
     /* SECOND - forecast CSS */
     #weather-forecast {
         margin: 10px;
