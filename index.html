@@ -35,29 +35,24 @@
                 <button id="search-btn"><i class="fas fa-search-location"></i></button>
             </form>
             <div id="search-history">
-                <ul id="search-history-ul">
-                    <!-- <li class="search-results">Austin</li>
-                    <li class="search-results">Chicago</li>
-                    <li class="search-results">New York</li>
-                    <li class="search-results">Orlando</li>
-                    <li class="search-results">Seattle</li> -->
-                </ul>
+                <ul id="search-history-ul"></ul>
             </div>
         </section>
 
         <!-- section - current weather -->
         <section id="current-weather">
             <!-- h2 - city/date/icon -->
-            <h2>Midway (4/1/2020)</h2>
-            <i class="fas fa-sun"></i>
+            <h2 id="current-city">Search A City<span id="current-date"></span>
+            </h2>
+            <img id="weather-icon">
             <!-- p - temp. -->
-            <p>Temperature: <span>90.9</span> &#8457</p>
+            <p>Temperature: <span id="current-temp"></span> &#8457</p>
             <!-- p - humidity -->
-            <p>Humidity: <span>41</span>%</p>
+            <p>Humidity: <span id="current-humidity"></span>%</p>
             <!-- p - wind speed -->
-            <p>Wind Speed: <span>4.7</span> MPH</p>
+            <p>Wind Speed: <span id="current-wind"></span> MPH</p>
             <!-- p - UV index - color coded -->
-            <p>UV Index: <span>9.49</span></p>
+            <p>UV Index: <span id="current-uvi"></span></p>
         </section>
 
         <!-- section - forecast -->
@@ -105,6 +100,7 @@
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/scripts/script.js"></script>
 </body>
 

@@ -2,7 +2,6 @@ let searchLocations = [];
 
 const APIKey = '166a433c57516f51dfab1f7edaed8413';
 
-
 init();
 
 // Click event for search button
@@ -17,20 +16,61 @@ $('#search-btn').on('click', function (event) {
         searchLocations.unshift(searchLocationValue)
     }
 
-    // else if (searchLocations != null && searchLocations.includes(searchLocationValue)) {
-    //     // manipulate array for same value
-    //     console.log('includes value')
-    // }
-
+    getCurrentWeather()
     printSearchLocations()
     storeLocations()
 
     $('#search-input').val('')
 })
 
-// URL creation for database query
-let queryURL = 'api.openweathermap.org/data/2.5/weather?q=' + searchLocations[0] + '&appid=' + APIKey;
 
+// Get API database info for current weather
+function getCurrentWeather() {
+    // URL creation for database query
+    let queryURLCurrent = 'https://api.openweathermap.org/data/2.5/weather?q=' + searchLocations[0] + '&units=imperial' + '&appid=' + APIKey;
+
+    $.ajax({
+        url: queryURLCurrent,
+        method: 'GET'
+    }).then(function (response) {
+        console.log(response)
+        let lat = response.coord.lat;
+        let lon = response.coord.lon;
+
+        getUVIndex(lat, lon)
+
+        let currentDate = moment(response.weather.dt).format('MM/DD/YYYY');
+        let weatherIcon = 'https://openweathermap.org/img/w/' + response.weather[0].icon + '.png';
+
+        $('#current-city').text(response.name)
+
+        console.log(currentDate)
+        $('#current-date').text(currentDate)
+
+        $('#weather-icon').attr('src', weatherIcon).attr('alt', 'Weather Icon')
+
+        $('#current-temp').text(response.main.temp)
+        $('#current-humidity').text(response.main.humidity)
+        $('#current-wind').text(response.wind.speed)
+    }).catch(function (error) {
+        console.log(error)
+    })
+}
+
+// get current UV Index
+function getUVIndex(lat, lon) {
+    let queryURLUVIndex = 'https://api.openweathermap.org/data/2.5/uvi?lat=' + lat + '&lon=' + lon + '&appid=' + APIKey;
+
+    $.ajax({
+        url: queryURLUVIndex,
+        method: 'GET'
+    }).then(function (UVIresponse) {
+        let UVIndex = UVIresponse.value;
+        $('#current-uvi').text(UVIndex)
+    }).catch(function (error) {
+        console.log(error)
+    })
+}
 
 // add searches to search history list
 function printSearchLocations() {
@@ -59,6 +99,7 @@ function init() {
     if (parsedLocations != null) {
         searchLocations = parsedLocations;
         printSearchLocations();
+        getCurrentWeather()
     } else {
         searchLocations = [];
     }
@@ -77,3 +118,4 @@ function removeArrayDuplicates(arr) {
     searchLocations = cleanedArray;
     return searchLocations;
 }
+
