@@ -6,9 +6,8 @@ init();
 
 // Click event for search button
 $('#search-btn').on('click', newSearch)
-
 // Click event on search history
-$('#search-history-ul > li').on('click', previousSearch)
+$('#search-history-ul').on('click', previousSearch)
 
 function newSearch(event) {
     event.preventDefault();
@@ -37,7 +36,6 @@ function previousSearch(event) {
         searchLocations.splice(targetIndex, 1)
         searchLocations.unshift(targetText)
     }
-    console.log(searchLocations)
     getCurrentWeather()
     printSearchLocations()
     storeLocations()
@@ -138,4 +136,3 @@ function removeArrayDuplicates(arr) {
     searchLocations = cleanedArray;
     return searchLocations;
 }
-
