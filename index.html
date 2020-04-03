@@ -32,7 +32,7 @@
 
                 <!-- ***Adjust Input font size -->
 
-                <input type="text" id="search-input">
+                <input type="text" id="search-input" placeholder="City, State">
                 <button id="search-btn"><i class="fas fa-search-location"></i></button>
             </form>
             <div id="search-history">
@@ -57,16 +57,22 @@
             <p>UV Index: <span id="current-uvi"></span></p>
         </section>
 
+        <!-- Modal -->
+        <div id="search-error" class="modal">
+            <p>City Not Found</p>
+            <a href="#" rel="modal:close">Close</a>
+        </div>
+
         <!-- section - forecast -->
         <section id="weather-forecast">
-            <h2>5-Day Forecast: <span></span></h2>
+            <h2>5-Day Forecast: <span>Search A City</span></h2>
             <!-- forecast cards -->
             <div id="forecast-container"></div>
         </section>
 
         <!-- footer -->
         <footer>
-            <h5 id="tagline">Get out and smell the roses!</h5>
+            <h5 id="tagline">Enjoy The Weather!</h5>
         </footer>
     </main>
 

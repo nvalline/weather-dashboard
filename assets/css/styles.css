@@ -52,8 +52,8 @@ form label {
 
 /* Input CSS */
 #search-input {
-    /* border: none; */
     border-radius: 5px;
+    font-size: 0.9em;
     height: 30px;
     width: 75%;
 }
@@ -107,8 +107,27 @@ form label {
     font-size: 1.1em;
 }
 
-#current-weather img {
-    
+/* UVI Classes */
+.uviLow {
+    background-color: #42ce26;
+    border-radius: 5px;
+    padding: 5px;
+}
+.uviMod {
+    background-color: #ffef00;
+    border-radius: 5px;
+    padding: 5px;
+}
+.uviHigh {
+    background-color: #ffa500;
+    border-radius: 5px;
+    padding: 5px;
+}
+.uviVeryHigh {
+    background-color: #ff0000;
+    border-radius: 5px;
+    color: #f3f3f3;
+    padding: 5px;
 }
 
 /* SECOND - Forecast CSS */

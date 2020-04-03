@@ -72,8 +72,15 @@ function getCurrentWeather() {
         $('#current-humidity').text(response.main.humidity)
         $('#current-wind').text(response.wind.speed)
     }).catch(function (error) {
-        console.log(error.responseJSON.message)
-        // ** Modal **
+        if (error.status === 404) {
+            // ** Modal **
+            $('#search-error').modal()
+            removeNotFound(searchLocations)
+            getCurrentWeather()
+            getForecast()
+            printSearchLocations()
+            storeLocations()
+        }
     })
 }
 
@@ -86,9 +93,19 @@ function getUVIndex(lat, lon) {
         method: 'GET'
     }).then(function (UVIresponse) {
         let UVIndex = UVIresponse.value;
+
+        if (UVIndex >= 8) {
+            $('#current-uvi').addClass('uviVeryHigh')
+        } else if (UVIndex < 8 && UVIndex >= 6) {
+            $('#current-uvi').addClass('uviHigh')
+        } else if (UVIndex < 6 && UVIndex >= 3) {
+            $('#current-uvi').addClass('uviMod')
+        } else {
+            $('#current-uvi').addClass('uviLow')
+        }
         $('#current-uvi').text(UVIndex)
     }).catch(function (error) {
-        console.log(error)
+        // console.log(error)
     })
 }
 
@@ -100,38 +117,40 @@ function getForecast() {
         url: queryURLForecast,
         method: 'GET'
     }).then(function (forecastResponse) {
-        $('#weather-forecast > h2 > span').text(searchLocations[0])
+        if (searchLocations.length > 0) {
+            $('#weather-forecast > h2 > span').text(searchLocations[0])
 
-        // reset forecast cards
-        resetForecastCards()
+            // reset forecast cards
+            resetForecastCards()
 
-        for (let k = 1; k < forecastResponse.list.length; k++) {
-            let nextDay = forecastResponse.list[k]
-            let momentDate = moment.unix(nextDay.dt)
-            let newDivElement = $('<div>').addClass('forecast-card')
-            let newPDate = $('<p>').addClass('future-date')
-            let newPTemp = $('<p>').addClass('future-temp')
-            let newPHum = $('<p>').addClass('future-humidity')
-            let newImgElement = $('<img>')
-            let forecastIcon = 'https://openweathermap.org/img/w/' + nextDay.weather[0].icon + '.png';
-            let forecastDate = momentDate.format('MM/DD/YYYY');
+            for (let k = 1; k < forecastResponse.list.length; k++) {
+                let nextDay = forecastResponse.list[k]
+                let momentDate = moment.unix(nextDay.dt)
+                let newDivElement = $('<div>').addClass('forecast-card')
+                let newPDate = $('<p>').addClass('future-date')
+                let newPTemp = $('<p>').addClass('future-temp')
+                let newPHum = $('<p>').addClass('future-humidity')
+                let newImgElement = $('<img>')
+                let forecastIcon = 'https://openweathermap.org/img/w/' + nextDay.weather[0].icon + '.png';
+                let forecastDate = momentDate.format('MM/DD/YYYY');
 
-            newPDate.text(forecastDate)
-            newImgElement.attr('src', forecastIcon)
-            newPTemp.html('Temp: <span></span> &#8457')
-            newPTemp.children().text(nextDay.temp.day)
-            newPHum.html('Humidity: <span></span> %')
-            newPHum.children().text(nextDay.humidity)
+                newPDate.text(forecastDate)
+                newImgElement.attr('src', forecastIcon)
+                newPTemp.html('Temp: <span></span> &#8457')
+                newPTemp.children().text(nextDay.temp.day)
+                newPHum.html('Humidity: <span></span>%')
+                newPHum.children().text(nextDay.humidity)
 
-            newDivElement.append(newPDate)
-            newDivElement.append(newImgElement)
-            newDivElement.append(newPTemp)
-            newDivElement.append(newPHum)
+                newDivElement.append(newPDate)
+                newDivElement.append(newImgElement)
+                newDivElement.append(newPTemp)
+                newDivElement.append(newPHum)
 
-            $('#forecast-container').append(newDivElement)
+                $('#forecast-container').append(newDivElement)
+            }
         }
     }).catch(function (error) {
-        console.log(error)
+        // console.log(error)
     })
 }
 
@@ -187,5 +206,11 @@ function removeArrayDuplicates(arr) {
         return i == self.indexOf(v);
     });
     searchLocations = cleanedArray;
+    return searchLocations;
+}
+
+function removeNotFound(arr) {
+    arr.shift()
+    searchLocations = arr
     return searchLocations;
 }
