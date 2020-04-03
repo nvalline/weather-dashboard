@@ -5,7 +5,12 @@ const APIKey = '166a433c57516f51dfab1f7edaed8413';
 init();
 
 // Click event for search button
-$('#search-btn').on('click', function (event) {
+$('#search-btn').on('click', newSearch)
+
+// Click event on search history
+$('#search-history-ul > li').on('click', previousSearch)
+
+function newSearch(event) {
     event.preventDefault();
 
     let searchLocationValue = $('#search-input').val().trim().toLowerCase();
@@ -21,8 +26,22 @@ $('#search-btn').on('click', function (event) {
     storeLocations()
 
     $('#search-input').val('')
-})
+}
 
+
+function previousSearch(event) {
+    let targetText = event.target.innerHTML;
+    let targetIndex = searchLocations.indexOf(targetText)
+
+    if (targetIndex > 0) {
+        searchLocations.splice(targetIndex, 1)
+        searchLocations.unshift(targetText)
+    }
+    console.log(searchLocations)
+    getCurrentWeather()
+    printSearchLocations()
+    storeLocations()
+}
 
 // Get API database info for current weather
 function getCurrentWeather() {
@@ -33,7 +52,6 @@ function getCurrentWeather() {
         url: queryURLCurrent,
         method: 'GET'
     }).then(function (response) {
-        console.log(response)
         let lat = response.coord.lat;
         let lon = response.coord.lon;
 
@@ -46,7 +64,6 @@ function getCurrentWeather() {
             return '<h2>' + response.name + ' | <span>' + currentDate + '</span></h2>';
         })
 
-        console.log(currentDate)
         $('#current-city > span').text('currentDate')
 
         $('#weather-icon').attr('src', weatherIcon).attr('alt', 'Weather Icon')
@@ -55,7 +72,8 @@ function getCurrentWeather() {
         $('#current-humidity').text(response.main.humidity)
         $('#current-wind').text(response.wind.speed)
     }).catch(function (error) {
-        console.log(error)
+        console.log(error.responseJSON.message)
+        // ** Modal **
     })
 }
 
