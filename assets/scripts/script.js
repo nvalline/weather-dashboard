@@ -18,9 +18,13 @@ function newSearch(event) {
         return
     } else {
         searchLocations.unshift(searchLocationValue)
+        if (searchLocations.length > 10) {
+            searchLocations.pop();
+        }
     }
 
     getCurrentWeather()
+    getForecast()
     printSearchLocations()
     storeLocations()
 
@@ -37,6 +41,7 @@ function previousSearch(event) {
         searchLocations.unshift(targetText)
     }
     getCurrentWeather()
+    getForecast()
     printSearchLocations()
     storeLocations()
 }
@@ -57,12 +62,9 @@ function getCurrentWeather() {
 
         let currentDate = moment(response.weather.dt).format('MMMM Do, YYYY');
         let weatherIcon = 'https://openweathermap.org/img/w/' + response.weather[0].icon + '.png';
-
         $('#current-city').html(function () {
             return '<h2>' + response.name + ' | <span>' + currentDate + '</span></h2>';
         })
-
-        $('#current-city > span').text('currentDate')
 
         $('#weather-icon').attr('src', weatherIcon).attr('alt', 'Weather Icon')
 
@@ -85,6 +87,44 @@ function getUVIndex(lat, lon) {
     }).then(function (UVIresponse) {
         let UVIndex = UVIresponse.value;
         $('#current-uvi').text(UVIndex)
+    }).catch(function (error) {
+        console.log(error)
+    })
+}
+
+// get 5 day forecast
+function getForecast() {
+    let queryURLForecast = 'https://api.openweathermap.org/data/2.5/forecast/daily?q=' + searchLocations[0] + '&cnt=6&units=imperial&appid=' + APIKey;
+
+    $.ajax({
+        url: queryURLForecast,
+        method: 'GET'
+    }).then(function (forecastResponse) {
+        for (let k = 0; k < forecastResponse.list.length; k++) {
+            let nextDay = forecastResponse.list[k]
+            let momentDate = moment.unix(nextDay.dt)
+            let newDivElement = $('<div>').addClass('forecast-card')
+            let newPDate = $('<p>').addClass('future-date')
+            let newPTemp = $('<p>').addClass('future-temp')
+            let newPHum = $('<p>').addClass('future-humidity')
+            let newImgElement = $('<img>')
+            let forecastIcon = 'https://openweathermap.org/img/w/' + nextDay.weather[0].icon + '.png';
+            let forecastDate = momentDate.format('MM/DD/YYYY');
+
+            newPDate.text(forecastDate)
+            newImgElement.attr('src', forecastIcon)
+            newPTemp.html('Temp: <span></span> &#8457')
+            $('.future-temp > span').text(nextDay.temp.day)
+            newPHum.html('Humidity: <span></span> %')
+            $('.future-humidity > span').text(nextDay.humidity)
+
+            newDivElement.append(newPDate)
+            newDivElement.append(newImgElement)
+            newDivElement.append(newPTemp)
+            newDivElement.append(newPHum)
+
+            $('#forecast-container').append(newDivElement)
+        }
     }).catch(function (error) {
         console.log(error)
     })
@@ -118,6 +158,7 @@ function init() {
         searchLocations = parsedLocations;
         printSearchLocations();
         getCurrentWeather()
+        getForecast()
     } else {
         searchLocations = [];
     }
