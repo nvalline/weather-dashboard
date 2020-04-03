@@ -118,6 +118,14 @@ form label {
     padding-left: 20px;
 }
 
+#weather-forecast h2 {
+    font-size: 1.1em;
+}
+
+#weather-forecast h2 span {
+    text-transform: capitalize;
+}
+
 #forecast-container {
     display: flex;
     flex-wrap: wrap;

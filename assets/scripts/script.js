@@ -100,6 +100,8 @@ function getForecast() {
         url: queryURLForecast,
         method: 'GET'
     }).then(function (forecastResponse) {
+        $('#weather-forecast > h2 > span').text(searchLocations[0])
+
         // reset forecast cards
         resetForecastCards()
 
