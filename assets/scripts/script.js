@@ -100,7 +100,10 @@ function getForecast() {
         url: queryURLForecast,
         method: 'GET'
     }).then(function (forecastResponse) {
-        for (let k = 0; k < forecastResponse.list.length; k++) {
+        // reset forecast cards
+        resetForecastCards()
+
+        for (let k = 1; k < forecastResponse.list.length; k++) {
             let nextDay = forecastResponse.list[k]
             let momentDate = moment.unix(nextDay.dt)
             let newDivElement = $('<div>').addClass('forecast-card')
@@ -114,9 +117,9 @@ function getForecast() {
             newPDate.text(forecastDate)
             newImgElement.attr('src', forecastIcon)
             newPTemp.html('Temp: <span></span> &#8457')
-            $('.future-temp > span').text(nextDay.temp.day)
+            newPTemp.children().text(nextDay.temp.day)
             newPHum.html('Humidity: <span></span> %')
-            $('.future-humidity > span').text(nextDay.humidity)
+            newPHum.children().text(nextDay.humidity)
 
             newDivElement.append(newPDate)
             newDivElement.append(newImgElement)
@@ -147,6 +150,13 @@ function printSearchLocations() {
 function resetLocationState() {
     if ($('#search-history-ul').has('li')) {
         $('li').remove()
+    }
+}
+
+// reset forecast cards
+function resetForecastCards() {
+    if ($('#forecast-container').has('div')) {
+        $('#forecast-container > div').remove()
     }
 }
 
