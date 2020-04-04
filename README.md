@@ -4,9 +4,9 @@
 
 <img src="./assets/img/weather-dashboard.png" alt="Weather Dashboard Image" width="600px">
 
-- [View Site](https://nvalline.github.io/weather-dashboard/)
-
 > This application allows you to stay up-to-date on the current weather & the forecast for cities around the nation.  
+
+- [View Site](https://nvalline.github.io/weather-dashboard/)
 
 ---
 
